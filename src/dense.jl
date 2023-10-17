@@ -1,4 +1,3 @@
-using Random  # Pour la génération de nombres aléatoires
 
 
 mutable struct Dense <: Layer
@@ -25,7 +24,7 @@ function forward(dense::Dense, input)
     return dense.weights * input + dense.bias
 end
 
-function backward(dense::Dense, output_gradient, learning_rate::float)
+function backward(dense::Dense, output_gradient, learning_rate::Float64)
     weight_gradient = output_gradient * transpose(dense.input)
     input_gradient = transpose(dense.weights) * output_gradient
     dense.weights = dense.weights - learning_rate * weight_gradient
@@ -33,7 +32,4 @@ function backward(dense::Dense, output_gradient, learning_rate::float)
     return input_gradient
 end
 
-dense = Dense(10,1)
-output = forward(dense, rand(10))
-println(output)
 

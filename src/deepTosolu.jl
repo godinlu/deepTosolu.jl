@@ -8,7 +8,7 @@ using Statistics, Random
 include("layer.jl")
 include("dense.jl")
 include("activation.jl")
-include("activation.jl")
+include("activations.jl")
 include("losses.jl")
 
 

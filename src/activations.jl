@@ -6,8 +6,8 @@ function Tanh()
 end
 
 function Sigmoid()
-    func = function(x) 1 / (1+exp(-x)) end
-    func_prime = function (x)
+    func = function(x::Float64) 1 / (1+exp(-x)) end
+    func_prime = function (x::Float64)
         s = func(x)
         return (s * (1-s))
     end

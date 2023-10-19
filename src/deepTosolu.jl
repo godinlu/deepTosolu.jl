@@ -1,7 +1,7 @@
 module deepTosolu
 
 # Write your package code here.
-export Dense,forward,backward,Tanh ,mse, mse_prime
+export Dense,forward,backward,Tanh ,mse, mse_prime,Sigmoid
 #include("functions.Jl")
 using Statistics, Random
 

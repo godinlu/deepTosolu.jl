@@ -3,9 +3,9 @@
 mutable struct Dense <: Layer
     input_size::Int
     output_size::Int
-    weights
-    bias
-    input
+    weights::Matrix{Float64}
+    bias::Vector{Float64}
+    input::Vector{<:Number}
 
     # Constructeur de la classe
     function Dense(input_size::Int, output_size::Int)
@@ -14,17 +14,17 @@ mutable struct Dense <: Layer
             output_size, 
             rand(output_size, input_size), 
             rand(output_size),
-            nothing
+            Float64[]
         )
     end
 end
 
-function forward(dense::Dense, input)
+function forward(dense::Dense, input::Vector{<:Number})
     dense.input = input
     return dense.weights * input + dense.bias
 end
 
-function backward(dense::Dense, output_gradient, learning_rate::Float64)
+function backward(dense::Dense, output_gradient::Vector{<:Number}, learning_rate::Float64)
     weight_gradient = output_gradient * transpose(dense.input)
     input_gradient = transpose(dense.weights) * output_gradient
     dense.weights = dense.weights - learning_rate * weight_gradient

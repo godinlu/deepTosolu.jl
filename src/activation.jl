@@ -15,5 +15,5 @@ function forward(activation::Activation,input)
 end
 
 function backward(activation::Activation,output_gradient,learning_rate::Float64)
-    return output_gradient * activation.func_activation_prime.(activation.input)
+    return output_gradient .* activation.func_activation_prime.(activation.input)
 end

@@ -1,13 +1,13 @@
 
 function Tanh()
-    func = function(x::Float64) tanh(x) end
-    func_prime = function(x::Float64) 1- tanh(x)^2 end
+    func = function(x::Number) tanh(x) end
+    func_prime = function(x::Number) return (1- tanh(x)^2) end
     return Activation(func,func_prime)
 end
 
 function Sigmoid()
-    func = function(x::Float64) 1 / (1+exp(-x)) end
-    func_prime = function (x::Float64)
+    func = function(x::Number) 1 / (1+exp(-x)) end
+    func_prime = function (x::Number)
         s = func(x)
         return (s * (1-s))
     end

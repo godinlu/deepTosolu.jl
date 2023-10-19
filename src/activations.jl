@@ -1,9 +1,8 @@
 
 function Tanh()
-    func = function(x) tanh(x) end
-    func_prime = function(x) 1- tanh(x)^2 end
-    tanh = Activation(func,func_prime)
-    return tanh
+    func = function(x::Float64) tanh(x) end
+    func_prime = function(x::Float64) 1- tanh(x)^2 end
+    return Activation(func,func_prime)
 end
 
 function Sigmoid()

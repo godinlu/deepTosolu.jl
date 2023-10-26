@@ -10,6 +10,7 @@ function binaryCrossEntropy(y_true::Vector{<:Number}, y_pred::Vector{<:Number})
     return mean(-y_true .* log.(y_pred) - (1 .-y_true).*log.(1 .- y_pred))
 end
 
-function binaryCrossEntropyPrime(y_true::Vector{<:Number}, y_pred::Vector{<:Number})
-    return ((1 .- y_true) / (1 .- y_pred) - y_true / y_pred) / length(y_true)
+function binaryCrossEntropyPrime(y_true, y_pred)
+    return ((1.0 .- y_true) ./ (1.0 .- y_pred) .- y_true ./ y_pred) / length(y_true)
 end
+

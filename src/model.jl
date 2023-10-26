@@ -55,6 +55,16 @@ function predict(model::Model, input::Vector{<:Number})
     return model.categories[argmax(activations)] 
 end
 
+function evaluate(model::Model, X_test::Matrix{<:Number}, Y_test::Vector{<:Any})
+    accuracy = 0 
+
+    for i in 1:size(X_test, 1)
+        accuracy += (predict(model,X_test[i,:]) == Y_test[i])
+    end
+
+    return accuracy / length(Y_test)
+end
+
 function accuracy(y_pred::Vector{<:Number}, y_true::Vector{<:Number} )
     return sum(y_pred == y_true) / length(y_pred)
 end

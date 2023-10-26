@@ -1,7 +1,8 @@
 module deepTosolu
 
 # Write your package code here.
-export Dense,forward,backward,Tanh ,mse, mse_prime,Sigmoid, Model, compile, forwardPropagation, backwardPropagation, fit, predict
+export Dense,forward,backward,Tanh ,mse, mse_prime,Sigmoid, Model, compile, forwardPropagation, backwardPropagation, fit, predict, evaluate
+export binaryCrossEntropy, binaryCrossEntropyPrime, mse, msePrime
 #include("functions.Jl")
 using Statistics
 using Random

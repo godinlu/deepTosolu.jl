@@ -29,7 +29,6 @@ function createDataSet()
 end
 
 
-
 function main()
     #get a dict contain the dataSet
     dataset = createData()
@@ -48,7 +47,7 @@ function main()
     #compile the model with the mse loss function
     compile(model, "binaryCrossEntropy")
     #fit the model with the trainset
-    history = fit(model, dataset["X_train"], dataset["Y_train"], 300, 0.1)
+    history = fit(model, dataset["X_train"], dataset["Y_train"], 1000, 0.05)
     
     plt_loss = plot(history["loss"])
     plt_accuracy = plot(history["accuracy_train"])

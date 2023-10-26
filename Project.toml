@@ -5,7 +5,9 @@ version = "1.0.0-DEV"
 
 [deps]
 CategoricalArrays = "324d7699-5711-5eae-9e2f-1d82baa6b597"
+Dash = "1b08a953-4be3-4667-9a23-3db579824955"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 ProgressBars = "49802e3a-d2f1-5c88-81d8-b72133a6f568"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"

@@ -1,4 +1,4 @@
-using  deepTosolu
+using deepTosolu
 using Plots
 using Random
 

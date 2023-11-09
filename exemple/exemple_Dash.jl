@@ -1,5 +1,5 @@
 using Dash
-using  deepTosolu
+using deepTosolu
 using Plots
 using Random
 
@@ -19,12 +19,13 @@ X_test = hcat(x1_test, x2_test)
 Y_train = vcat(fill("chat",50),  fill("chien",50), fill("camion",50))
 Y_test = vcat(fill("chat",50),  fill("chien",50), fill("camion",50))
 
+faceinter(X_train,Y_train)
 #scatter(X_train[:,1],X_train[:,2], mc=Y_train)
 
-function training(epochs,learning_rate,layers_txt)
-    layers = eval(Meta.parse(txt))
+function training(epochs,learning_rate,layers_txt,input_loss)
+    layers = eval(Meta.parse(layers_txt))
     model = Model(layers)
-    compile(model,"mse")
+    compile(model,input_loss)
 
     return fit(model, X_train, Y_train, epochs, learning_rate)
 
@@ -42,25 +43,24 @@ app.layout = html_div() do
     dcc_input(id = "lr_input", value = 0.1, type = "number"),
     html_div(
         dcc_dropdown(
-            id = "loss-function",
+            id = "loss_input",
             options = [
                 Dict("label" => "Mean Squared Error", "value" => "mse"),
-                Dict("label" => "Loss 2", "value" => "loss2")
+                Dict("label" => "Binary Cross Entropy", "value" => "binaryCrossEntropy")
             ],
             value = "mse"  # Valeur par défaut sélectionnée
         )
-    )   
+    ),
     html_button("Valider", id = "submit-button"),
-    html_div("Voila le graphique du loss"),
-    dcc_graph(id = "loss",
-              figure = ()),
+    html_div("Voici le graphique du loss"),
+    dcc_graph(id = "loss", figure = ()),
     html_div("Voici le graphique de l'accuracy"),
-    dcc_graph(id = "accur",
-              figure = ())    
-end
+    dcc_graph(id = "accur", figure = ())    
+end 
 
-callback!(app, Output("loss", "figure"),Output("accur","figure"), Input("submit-button", "n_clicks"),State("epoch_input", "value"),State("lr_input","value"),State("layers_input","value"),prevent_initial_call=true) do n_clicks,input_epoch,input_lr,input_layer
-    history = training(input_epoch,input_lr,input_layer)
+
+callback!(app, Output("loss", "figure"),Output("accur","figure"), Input("submit-button", "n_clicks"),State("epoch_input", "value"),State("lr_input","value"),State("layers_input","value"),State("loss_input","value"),prevent_initial_call=true) do n_clicks,input_epoch,input_lr,input_layer,input_loss
+    history = training(input_epoch,input_lr,input_layer,input_loss)
     new_figure = (
         data = [
             (y = history["loss"], type = "scatter", mode = "lines", name = "Train loss"),
@@ -77,3 +77,4 @@ callback!(app, Output("loss", "figure"),Output("accur","figure"), Input("submit-
 end
 
 run_server(app)
+

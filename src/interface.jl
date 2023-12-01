@@ -9,25 +9,22 @@ function training(X_train,Y_train,epochs,learning_rate,layers_txt,input_loss)
 end
 
 function interface()
-    x1_train = vcat(randn(50) * 2 .+ 5, randn(50) * 2 .- 5, randn(50) * 2)
-    x2_train = vcat(randn(50) * 2 .+ 5, randn(50) * 5 .- 5, randn(50) * 2)
-    X_train = hcat(x1_train, x2_train)
-
-    # Générer les données de test
-    x1_test = vcat(randn(50) * 2 .+ 5, randn(50) * 2 .- 5, randn(50) * 2)
-    x2_test = vcat(randn(50) * 2 .+ 5, randn(50) * 5 .- 5, randn(50) * 2)
-    X_test = hcat(x1_test, x2_test)
-
-    # Créer les étiquettes (Y_train et Y_test)
-    Y_train = vcat(fill("chat",50),  fill("chien",50), fill("camion",50))
-    Y_test = vcat(fill("chat",50),  fill("chien",50), fill("camion",50))
+    println(pwd())
+    data_train = CSV.File("data_train.csv") |> DataFrame
+	# On extrait X_train et y_train
+	X_train = Matrix(select(data_train, [:x1_train, :x2_train]))
+	y_train = data_train[:, :y_train]
+	data_test = CSV.File("data_test.csv") |> DataFrame
+	# On extrait X_train et y_train
+	X_test = Matrix(select(data_test, [:x1_test, :x2_test]))
+	y_test = data_test[:, :y_test]
     app = dash(external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"])
 
     app.layout = html_div() do
         html_h1("DeepTosolu"),
-        dcc_input(id = "layers_input", value = "[Dense(2,64),Sigmoid(),Dense(64,16),Sigmoid(),Dense(16,3),Sigmoid()]", type = "text",style = Dict("width" => "40%")),
+        dcc_input(id = "layers_input", value = "[Dense(2,64),Sigmoid(),Dense(64,16),Sigmoid(),Dense(16,4),Sigmoid()]", type = "text",style = Dict("width" => "40%")),
         html_br(),
-        dcc_input(id = "epoch_input", value = 500, type = "number"),
+        dcc_input(id = "epoch_input", value = 1000, type = "number"),
         dcc_input(id = "lr_input", value = 0.1, type = "number"),
         html_div(
             dcc_dropdown(

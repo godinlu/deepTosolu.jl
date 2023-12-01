@@ -11,6 +11,8 @@ using LinearAlgebra
 using CategoricalArrays
 using ImageFiltering
 using Dash
+using CSV
+using DataFrames
 
 include("layer.jl")
 include("dense.jl")

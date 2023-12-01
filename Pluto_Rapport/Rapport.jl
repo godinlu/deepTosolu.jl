@@ -44,7 +44,19 @@ On commence par installer ce package de fou
 """
 
 # ╔═╡ eff5c7c2-d4e3-46d8-8073-44ce10c1ae00
-history = fit(model, X_train, y_train, 1000, 0.05)
+begin 
+	elapsed_time = @elapsed begin
+    	history = fit(model, X_train, y_train, 1000, 0.05);
+	end
+	println("Temps écoulé : $elapsed_time secondes")
+end
+
+# ╔═╡ 3a167dba-082f-4f2c-b902-2be514584df8
+md"""
+!!! info "Attention !"
+	On ne lance pas l'interface Dash ici car elle utilise Dash.jl,
+	Cependant, on peut quand même afficher des graphiques
+"""
 
 # ╔═╡ ea74f5c8-6139-4632-a761-8cb8edac843b
 plt_loss = plot(history["loss", ], title="binaryCrossEntropy loss")
@@ -57,13 +69,6 @@ acc = evaluate(model, X_test, y_test)
 
 # ╔═╡ ed634f23-32b9-4384-9b26-57dc4705a92d
 println("accuracy : ",acc)
-
-# ╔═╡ 3a167dba-082f-4f2c-b902-2be514584df8
-md"""
-!!! info "Attention !"
-	On ne lance pas l'interface Dash ici car elle utilise Dash.jl,
-	Cependant, on peut quand même afficher des graphiques
-"""
 
 # ╔═╡ c8ada748-384e-4b58-b90c-987a3b473f7e
 

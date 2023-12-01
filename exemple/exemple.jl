@@ -37,9 +37,9 @@ function main()
     layers = [
         Dense(2,64),
         Sigmoid(),
-        Dense(64,3),
+        Dense(64,64),
         Sigmoid(),
-        Dense(3,3),
+        Dense(64,4),
         Sigmoid()
     ]
     #create the model

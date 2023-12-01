@@ -26,16 +26,12 @@ function setLoss(model::Model, loss_name::String)
 
 end
 
-function ()
-    
-end
-
 
 function compile(model::Model, loss_name::String = "mse")
     setLoss(model, loss_name)
 end
 
-function forwardPropagation(model::Model, input::Vector{<:Number})::Vector{<:Number}
+function forwardPropagation(model::Model, input::Array{<:Number})::Vector{<:Number}
     output = input
     for layer in model.layers
         output = forward(layer, output)
@@ -77,9 +73,14 @@ function oneHotEncode(model::Model, vector::Vector{<:Any})::Matrix{Int}
 
 end
 
+
+function subArray(arr::Array, index::Int)
+    return arr[index, repeat([:], length(size(arr)) -1 )...]
+end
+
 function fit(
     model::Model,
-    X_train::Matrix{<:Number},
+    X_train::Array{<:Number},
     Y_train::Vector{<:Any},
     epochs::Int,
     learning_rate::Float64 = 0.1
@@ -94,7 +95,7 @@ function fit(
         error = 0
         tmp_acc = 0
         for i in 1:size(X_train,1)
-            x = X_train[i,:]
+            x = subArray(X_train,i)
             y = Y_train_oh[i,:]
 
             output = forwardPropagation(model, x)

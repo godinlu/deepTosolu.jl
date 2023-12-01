@@ -1,4 +1,4 @@
-using  deepTosolu
+using deepTosolu
 using Plots
 using Random
 
@@ -31,7 +31,7 @@ end
 
 function main()
     #get a dict contain the dataSet
-    dataset = createData()
+    dataset = createDataSet()
 
     #create layers for the network
     layers = [
@@ -47,10 +47,11 @@ function main()
     #compile the model with the mse loss function
     compile(model, "binaryCrossEntropy")
     #fit the model with the trainset
+    print(size(dataset["X_train"]))
     history = fit(model, dataset["X_train"], dataset["Y_train"], 1000, 0.05)
     
-    plt_loss = plot(history["loss"])
-    plt_accuracy = plot(history["accuracy_train"])
+    plt_loss = plot(history["loss", ], title="binaryCrossEntropy loss")
+    plt_accuracy = plot(history["accuracy_train"], color=:red, title="accuracy")
 
     display(plot(plt_loss, plt_accuracy, layout=2))
     acc = evaluate(model, dataset["X_test"], dataset["Y_test"])

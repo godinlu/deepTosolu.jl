@@ -19,7 +19,7 @@ X_test = hcat(x1_test, x2_test)
 Y_train = vcat(fill("chat",50),  fill("chien",50), fill("camion",50))
 Y_test = vcat(fill("chat",50),  fill("chien",50), fill("camion",50))
 
-faceinter(X_train,Y_train)
+interface()
 #scatter(X_train[:,1],X_train[:,2], mc=Y_train)
 
 function training(epochs,learning_rate,layers_txt,input_loss)

@@ -4,12 +4,12 @@ module deepTosolu
 export Dense,forward,backward,Tanh ,mse, mse_prime,Sigmoid, Model, compile, forwardPropagation, backwardPropagation, fit, predict, evaluate
 export binaryCrossEntropy, binaryCrossEntropyPrime, mse, msePrime,Convolutional, Flatten, interface
 #include("functions.Jl")
-using Statistics
-using Random
+using Statistics: mean
+using Random: rand
 using ProgressBars
-using LinearAlgebra
+#using LinearAlgebra
 using CategoricalArrays
-using ImageFiltering
+using DSP: conv
 using Dash
 using CSV
 using DataFrames

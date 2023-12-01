@@ -7,7 +7,7 @@ convolution2 = Convolutional((5, 26, 26), 3, 8)
 
 input = randn((1,28,28))
 
-f = forward(convolution, input)
+f = forward(convolution1, input)
 
 f = forward(convolution2, f)
 size(f)
@@ -22,5 +22,5 @@ size(f)
 M = rand(5,5,5)
 
 
-subArray(M,1)
+
 

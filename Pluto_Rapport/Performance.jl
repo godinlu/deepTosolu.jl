@@ -31,22 +31,26 @@ begin
         Dense(64,4),
         Sigmoid()
     ]
-    #create the model
+    #On créé le modèle
     model = Model(layers)
-    #compile the model with the mse loss function
+    #On le compile en choisissant une fonction de loss
     compile(model, "binaryCrossEntropy")
-    #fit the model with the trainset
 end
 
 # ╔═╡ 368e8a5f-1b7a-4808-b8df-ca84b8f9db00
 md"""
-On commence par installer ce package de fou
+On commence par installer le package en utilisant le git
+"""
+
+# ╔═╡ e6bea3f3-df8b-45a2-ab0c-8f0eca56ade9
+md"""
+Maintenant que le modèle existe, on peut l'entraîner. On en profite pour mesurer le temps d'éxécution pour le comparer avec la version du programme en R
 """
 
 # ╔═╡ eff5c7c2-d4e3-46d8-8073-44ce10c1ae00
 begin 
 	elapsed_time = @elapsed begin
-    	history = fit(model, X_train, y_train, 1000, 0.05);
+    	history = fit(model, X_train, y_train, 1000, 0.1);
 	end
 	println("Temps écoulé : $elapsed_time secondes")
 end
@@ -61,30 +65,21 @@ md"""
 # ╔═╡ ea74f5c8-6139-4632-a761-8cb8edac843b
 plt_loss = plot(history["loss", ], title="binaryCrossEntropy loss")
 
+# ╔═╡ 5e4f0040-68bf-45a0-bfed-81755fc14a59
+md"""
+On peut observer les résultats dans les différents graphiques
+"""
+
 # ╔═╡ f9de12fa-dbe3-4374-a5a0-6b7c80b0ad38
 plt_accuracy = plot(history["accuracy_train"], color=:red, title="accuracy")
-
-# ╔═╡ 38a4f6d7-2063-4937-a9b6-dcddf38dc92a
-acc = evaluate(model, X_test, y_test)
-
-# ╔═╡ ed634f23-32b9-4384-9b26-57dc4705a92d
-println("accuracy : ",acc)
-
-# ╔═╡ c8ada748-384e-4b58-b90c-987a3b473f7e
-
-
-# ╔═╡ 461743b0-d459-457a-8042-d9a0c1c6a56f
-
 
 # ╔═╡ Cell order:
 # ╟─368e8a5f-1b7a-4808-b8df-ca84b8f9db00
 # ╠═20c65a90-7ed8-11ee-0a37-712092f75391
 # ╠═68bf286f-fffa-4ea5-8b9c-e662c7708051
+# ╟─e6bea3f3-df8b-45a2-ab0c-8f0eca56ade9
 # ╠═eff5c7c2-d4e3-46d8-8073-44ce10c1ae00
-# ╠═3a167dba-082f-4f2c-b902-2be514584df8
-# ╠═ea74f5c8-6139-4632-a761-8cb8edac843b
-# ╠═f9de12fa-dbe3-4374-a5a0-6b7c80b0ad38
-# ╠═38a4f6d7-2063-4937-a9b6-dcddf38dc92a
-# ╠═ed634f23-32b9-4384-9b26-57dc4705a92d
-# ╠═c8ada748-384e-4b58-b90c-987a3b473f7e
-# ╠═461743b0-d459-457a-8042-d9a0c1c6a56f
+# ╟─3a167dba-082f-4f2c-b902-2be514584df8
+# ╟─ea74f5c8-6139-4632-a761-8cb8edac843b
+# ╟─5e4f0040-68bf-45a0-bfed-81755fc14a59
+# ╟─f9de12fa-dbe3-4374-a5a0-6b7c80b0ad38

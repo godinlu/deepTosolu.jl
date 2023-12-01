@@ -56,7 +56,7 @@ app = dash(external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
         )
         new_figure2 = (
                     data = [
-                        (y = history["accuracy_train"], type = "scatter", mode = "lines", name = "accuracy train"),
+                        (y = history["accuracy_train"], type = "scatter", mode = "lines", name = "accuracy train",line=Dict("color"=>"red")),
                     ],
                     layout = (title = "Courbe de l'accuracy",)
                 )
@@ -64,4 +64,3 @@ app = dash(external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
     end
 
     run_server(app)
-end

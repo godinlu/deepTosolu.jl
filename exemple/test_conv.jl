@@ -10,7 +10,8 @@ input = randn((1,28,28))
 f = forward(convolution1, input)
 
 f = forward(convolution2, f)
-size(f)
+
+println(size(f))
 #backward(convolution, f, 0.1)
 
 
@@ -22,5 +23,10 @@ size(f)
 M = rand(5,5,5)
 
 
-
+layers = [
+        Dense(4,5),
+        Sigmoid(),
+        Dense(5,2),
+        Sigmoid()
+    ]
 

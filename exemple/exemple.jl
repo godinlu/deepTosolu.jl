@@ -39,7 +39,7 @@ function main()
         Sigmoid(),
         Dense(64,64),
         Sigmoid(),
-        Dense(64,4),
+        Dense(64,3),
         Sigmoid()
     ]
     #create the model

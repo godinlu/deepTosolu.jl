@@ -9,7 +9,7 @@ using Random
 using ProgressBars
 using LinearAlgebra
 using CategoricalArrays
-using ImageFiltering
+using DSP: conv
 using Dash
 
 include("layer.jl")

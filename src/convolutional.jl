@@ -40,7 +40,7 @@ function correlate2d_valid(input, kernel)
     output_size = (input_size .- kernel_size) .+ 1
 
     # correlation avec le mode "full" pour obtenir le résultat complet
-    result_full = imfilter(input, kernel)
+    result_full = conv(input, kernel)
 
     # Extraction de la partie "valid" du résultat en fonction de la taille souhaitée
     valid_start = div.(kernel_size, 2) .+ 1
